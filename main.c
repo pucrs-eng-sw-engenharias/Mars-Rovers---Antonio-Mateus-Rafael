@@ -9,30 +9,34 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include <stdio.h>
 #include <math.h>
 
+#include <stdio.h>
+ 
+#define MAXCHAR 1024
+int main() {
 
-int x=0;
-int orientacao;
-char L = 1, R = 1;
+    int tamanhoX=0;
+    int tamanhoY=0;
 
-int main()
-{
-    int esquerda =0;
-    int direita = 0;
-    printf("Posição Inicial do Rover: 0, 0 N\n");
-    
-    do{
-    printf("Digite a orientação desejada: 1(Left) or 2(Right)\n");
-    scanf("%i", &orientacao);
-    
-    if(orientacao == 1) esquerda = esquerda+1;
-    if(orientacao == 2) direita = direita+1;
-    
-    printf("Confirme para sair (3 = confirmar posição, 4 = dar nova orientação)\n");
-    scanf("%i", &x);
-    
-    
-    }while(x != 3);
-    
-    printf("orientação atual do rover é: %i %i ", esquerda, direita);
+    //Declara arquivo
+    FILE *fp;
+    char str[MAXCHAR];
+    char filename[MAXCHAR] = ".\\TESTE.RAFAEL.txt";
+
+    fp = fopen(filename, "r");
+    if (fp == NULL){
+        printf("Não foi possível abrir o arquivo: %s",filename);
+        return 1;
+    }
+
+    //lê o arquivo
+    fgets(str, MAXCHAR, fp);
+    tamanhoX = str[0]- '0';
+    tamanhoY = str[2]- '0';
+    printf(" %d %d \n",tamanhoX, tamanhoY);
+    while (fgets(str, MAXCHAR, fp) != NULL)
+        printf("%s", str);
+    fclose(fp);
+    return 0;
+
 
 }
