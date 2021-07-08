@@ -7,14 +7,11 @@ Write your code in this editor and press "Run" button to compile and execute it.
 *******************************************************************************/
 
 #include <stdio.h>
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
 #include "rover.h"
 
-#define MAXCHAR 1024
+#define MAXCHAR 100
 
 
 int main() {
@@ -40,23 +37,23 @@ int main() {
     tamanhoX = str[0] - '0';
     tamanhoY = str[2] - '0';
 
-    int aux = 2;
+    int aux = 2; //variavel criada para fazer a leitura dos dados de entrada. Valor escolhido foi o 2 para que o codigo não busque espaço nos dados de input
 
     while (fgets(str, MAXCHAR, fp) != NULL) {
         if (aux % 2 == 0) {
-            for (int i = 0; i < sizeof(str); ++i) {
+            for (int i = 0; i < sizeof(str); ++i) { //fazendo varredura dos dados de entrada
                 if (str[i] != 32){
                     if (i == 0){
-                        RoverRobot.x = str[i] - '0';
+                        RoverRobot.x = str[i] - '0'; //atualiza a variavel do eixo x da struct do Rover. A struct foi escolhida pois agrupa variaveis do mesmo tipo de dado
                     } else if (i == 2) {
-                        RoverRobot.y = str[i] - '0';
+                        RoverRobot.y = str[i] - '0'; //atualiza a variavel do eixo y da struct do Rover.
                     } else if (i == 4) {
-                        RoverRobot.orientation = str[i];
+                        RoverRobot.orientation = str[i]; //atualiza a variavel que armazena a orientacao do Rover
                     }
                 }
             }
         } else {
-            for (int j = 0; str[j] == 'L' || str[j] == 'R' || str[j] == 'M'; ++j) {
+            for (int j = 0; str[j] == 'L' || str[j] == 'R' || str[j] == 'M'; ++j) { //faz a varredura dos comandos de orientacao do Rover
                 switch (str[j]) {
                     case 'L':
                         //Calculo de rotacao para esquerda
@@ -73,7 +70,7 @@ int main() {
                 }
             }
 
-            printf("%i %i %c\n\n", RoverRobot.x, RoverRobot.y, RoverRobot.orientation);
+            printf("%i %i %c\n\n", RoverRobot.x, RoverRobot.y, RoverRobot.orientation); //printa a posicao atualizada do Rover no eixo x e y, alem de sua orientacao
 
         }
         ++aux;

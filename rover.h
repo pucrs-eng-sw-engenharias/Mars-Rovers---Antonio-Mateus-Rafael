@@ -1,17 +1,17 @@
 #include "validator.h"
 
-struct rover {
+struct rover { //variaveis criadas para armazenar as posicoes e orientacoes do Rover
     int x;
     int y;
     char orientation;
 };
 
-struct rover rotateRover(struct rover RoverRobot, char *side) {
-    switch (RoverRobot.orientation) {
+struct rover rotateRover(struct rover RoverRobot, char *side) { //recebe o comando de orientacao do Rover
+    switch (RoverRobot.orientation) { //ao receber o comando de orientacao desejada do rover, escolhe a movimentacao com base na orientacao atual do rover
         case 'N':
-            if (side == "L") {
+            if (side == "L") { //caso a variavel seja L (movimento para a esquerda), o Rover tera orientacao para West
                 RoverRobot.orientation = 'W';
-            } else {
+            } else { //caso a variavel seja R (movimento para a direita), o Rover tera orientacao para East
                 RoverRobot.orientation = 'E';
             }
             break;
@@ -23,9 +23,9 @@ struct rover rotateRover(struct rover RoverRobot, char *side) {
             }
             break;
         case 'E':
-            if (side == "L") {
+            if (side == "L") { //caso a variavel seja L (movimento para a esquerda), o Rover tera orientacao para North
                 RoverRobot.orientation = 'N';
-            } else {
+            } else { //caso a variavel seja R (movimento para a direita), o Rover tera orientacao para South
                 RoverRobot.orientation = 'S';
             }
             break;
